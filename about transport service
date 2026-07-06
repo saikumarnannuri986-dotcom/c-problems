@@ -1,0 +1,18 @@
+bus_name = input("Enter Bus Name: ")
+route = input("Enter Route: ")
+total_seats = int(input("Enter Total Seats: "))
+booked_seats = int(input("Enter Booked Seats: "))
+
+available_seats = total_seats - booked_seats
+
+print("\n----- Transport Service Details -----")
+print("Bus Name:", bus_name)
+print("Route:", route)
+print("Total Seats:", total_seats)
+print("Booked Seats:", booked_seats)
+print("Available Seats:", available_seats)
+
+if available_seats > 0:
+    print("Seats are available.")
+else:
+    print("No seats available.")
