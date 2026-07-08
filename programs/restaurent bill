@@ -1,0 +1,27 @@
+print("Restaurant Bill")
+
+# Prices
+burger = 100
+pizza = 200
+
+# Input
+b = int(input("Enter Burger Quantity: "))
+p = int(input("Enter Pizza Quantity: "))
+
+# Total Bill
+total = (b * burger) + (p * pizza)
+
+print("\n----- BILL -----")
+print("Burger:", b, "x 100 =", b * burger)
+print("Pizza :", p, "x 200 =", p * pizza)
+print("Total Bill = Rs.", total)
+
+# Payment
+paid = int(input("Enter Amount Paid: "))
+
+if paid >= total:
+    print("Payment Successful")
+    print("Balance = Rs.", paid - total)
+else:
+    print("Insufficient Amount")
+    print("Need to Pay = Rs.", total - paid)
