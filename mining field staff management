@@ -1,0 +1,26 @@
+# Mining Field Staff Management
+
+staff = []
+
+n = int(input("Enter the number of field staff: "))
+
+for i in range(n):
+    print("\nEnter details for Staff", i + 1)
+    staff_id = input("Staff ID: ")
+    name = input("Name: ")
+    mobile = input("Mobile Number: ")
+
+    staff.append({
+        "ID": staff_id,
+        "Name": name,
+        "Mobile": mobile
+    })
+
+print("\n------ Mining Field Staff Details ------")
+for s in staff:
+    print("ID:", s["ID"])
+    print("Name:", s["Name"])
+    print("Mobile:", s["Mobile"])
+    print("-------------------------")
+
+print("Total Field Staff:", len(staff))
