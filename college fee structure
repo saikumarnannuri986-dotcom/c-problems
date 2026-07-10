@@ -1,0 +1,25 @@
+# College Fee Structure Program
+
+print("===== College Fee Structure =====")
+
+student_name = input("Enter Student Name: ")
+roll_no = input("Enter Roll Number: ")
+
+tuition_fee = float(input("Enter Tuition Fee: ₹"))
+lab_fee = float(input("Enter Lab Fee: ₹"))
+library_fee = float(input("Enter Library Fee: ₹"))
+exam_fee = float(input("Enter Exam Fee: ₹"))
+hostel_fee = float(input("Enter Hostel Fee: ₹"))
+
+total_fee = tuition_fee + lab_fee + library_fee + exam_fee + hostel_fee
+
+print("\n===== Fee Receipt =====")
+print("Student Name :", student_name)
+print("Roll Number  :", roll_no)
+print("Tuition Fee  : ₹", tuition_fee)
+print("Lab Fee      : ₹", lab_fee)
+print("Library Fee  : ₹", library_fee)
+print("Exam Fee     : ₹", exam_fee)
+print("Hostel Fee   : ₹", hostel_fee)
+print("------------------------------")
+print("Total Fee    : ₹", total_fee)
