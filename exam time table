@@ -1,0 +1,17 @@
+# Exam Time Table Program
+
+print("===== EXAM TIME TABLE =====")
+
+subjects = [
+    ("Mathematics", "15-07-2026", "09:30 AM - 12:30 PM"),
+    ("Physics", "17-07-2026", "09:30 AM - 12:30 PM"),
+    ("Chemistry", "19-07-2026", "09:30 AM - 12:30 PM"),
+    ("English", "21-07-2026", "09:30 AM - 12:30 PM"),
+    ("Computer Science", "23-07-2026", "09:30 AM - 12:30 PM")
+]
+
+print("\n{:<20} {:<15} {:<20}".format("Subject", "Date", "Time"))
+print("-" * 55)
+
+for subject, date, time in subjects:
+    print("{:<20} {:<15} {:<20}".format(subject, date, time))ea
