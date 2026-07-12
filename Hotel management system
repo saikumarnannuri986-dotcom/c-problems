@@ -1,0 +1,78 @@
+# Hotel Management System
+
+customer_name = ""
+room_type = ""
+days = 0
+
+while True:
+    print("\n===== HOTEL MANAGEMENT SYSTEM =====")
+    print("1. Book Room")
+    print("2. View Customer Details")
+    print("3. Display Room Tariff")
+    print("4. Generate Bill")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        customer_name = input("Enter Customer Name: ")
+
+        print("\nRoom Types")
+        print("1. Standard - Rs.1000/day")
+        print("2. Deluxe - Rs.2000/day")
+        print("3. Suite - Rs.3000/day")
+
+        room = int(input("Choose Room Type: "))
+        days = int(input("Enter Number of Days: "))
+
+        if room == 1:
+            room_type = "Standard"
+            rate = 1000
+        elif room == 2:
+            room_type = "Deluxe"
+            rate = 2000
+        elif room == 3:
+            room_type = "Suite"
+            rate = 3000
+        else:
+            print("Invalid Room Type!")
+            continue
+
+        print("\nRoom Booked Successfully!")
+
+    elif choice == 2:
+        if customer_name == "":
+            print("\nNo Booking Found.")
+        else:
+            print("\nCustomer Name :", customer_name)
+            print("Room Type     :", room_type)
+            print("Days          :", days)
+
+    elif choice == 3:
+        print("\nRoom Tariff")
+        print("Standard : Rs.1000/day")
+        print("Deluxe   : Rs.2000/day")
+        print("Suite    : Rs.3000/day")
+
+    elif choice == 4:
+        if customer_name == "":
+            print("\nNo Booking Available.")
+        else:
+            total = rate * days
+            gst = total * 0.18
+            final_bill = total + gst
+
+            print("\n===== BILL =====")
+            print("Customer :", customer_name)
+            print("Room Type:", room_type)
+            print("Days     :", days)
+            print("Room Cost: Rs.", total)
+            print("GST (18%): Rs.", gst)
+            print("Total Bill: Rs.", final_bill)
+
+    elif choice == 5:
+        print("Thank You for Visiting!")
+        break
+
+    else:
+        print("Invalid Choice!")
