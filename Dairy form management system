@@ -1,0 +1,69 @@
+# Dairy Farm Management System
+
+cows = []
+
+while True:
+    print("\n===== DAIRY FARM MANAGEMENT SYSTEM =====")
+    print("1. Add Cow")
+    print("2. View Cows")
+    print("3. Record Milk Production")
+    print("4. Calculate Income")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        cow_id = input("Enter Cow ID: ")
+        cow_name = input("Enter Cow Name: ")
+        milk = 0
+        cows.append({
+            "id": cow_id,
+            "name": cow_name,
+            "milk": milk
+        })
+        print("Cow added successfully!")
+
+    elif choice == "2":
+        if len(cows) == 0:
+            print("No cows available.")
+        else:
+            print("\nCow Details")
+            print("-" * 40)
+            for cow in cows:
+                print("ID:", cow["id"])
+                print("Name:", cow["name"])
+                print("Milk Produced:", cow["milk"], "Litres")
+                print("-" * 40)
+
+    elif choice == "3":
+        cid = input("Enter Cow ID: ")
+        found = False
+        for cow in cows:
+            if cow["id"] == cid:
+                milk = float(input("Enter Milk Produced (Litres): "))
+                cow["milk"] = milk
+                print("Milk record updated successfully!")
+                found = True
+                break
+        if not found:
+            print("Cow not found!")
+
+    elif choice == "4":
+        price = float(input("Enter Price per Litre: ₹"))
+        total_milk = 0
+        for cow in cows:
+            total_milk += cow["milk"]
+
+        income = total_milk * price
+
+        print("\n===== DAILY REPORT =====")
+        print("Total Milk:", total_milk, "Litres")
+        print("Price per Litre: ₹", price)
+        print("Total Income: ₹", income)
+
+    elif choice == "5":
+        print("Thank you for using Dairy Farm Management System!")
+        break
+
+    else:
+        print("Invalid Choice! Please try again.")
