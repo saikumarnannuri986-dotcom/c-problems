@@ -1,0 +1,71 @@
+import random
+
+light = False
+fan = False
+alarm = False
+
+while True:
+    print("\n===== SMART HOME AUTOMATION =====")
+    print("1. Turn Light ON")
+    print("2. Turn Light OFF")
+    print("3. Turn Fan ON")
+    print("4. Turn Fan OFF")
+    print("5. Check Temperature")
+    print("6. Check Water Tank Level")
+    print("7. Activate Security Alarm")
+    print("8. Deactivate Security Alarm")
+    print("9. Show System Status")
+    print("10. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        light = True
+        print("Light is ON")
+
+    elif choice == 2:
+        light = False
+        print("Light is OFF")
+
+    elif choice == 3:
+        fan = True
+        print("Fan is ON")
+
+    elif choice == 4:
+        fan = False
+        print("Fan is OFF")
+
+    elif choice == 5:
+        temperature = random.randint(20, 40)
+        print("Room Temperature:", temperature, "°C")
+
+        if temperature > 30:
+            print("Temperature High! Fan Recommended.")
+
+    elif choice == 6:
+        water = random.randint(10, 100)
+        print("Water Tank Level:", water, "%")
+
+        if water < 30:
+            print("Warning! Water Tank is Low.")
+
+    elif choice == 7:
+        alarm = True
+        print("Security Alarm Activated")
+
+    elif choice == 8:
+        alarm = False
+        print("Security Alarm Deactivated")
+
+    elif choice == 9:
+        print("\n------ SYSTEM STATUS ------")
+        print("Light :", "ON" if light else "OFF")
+        print("Fan   :", "ON" if fan else "OFF")
+        print("Alarm :", "ACTIVE" if alarm else "OFF")
+
+    elif choice == 10:
+        print("System Closed.")
+        break
+
+    else:
+        print("Invalid Choice")
