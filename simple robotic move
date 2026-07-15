@@ -1,0 +1,64 @@
+# Simple Robot Movement Simulation
+
+class Robot:
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.direction = "North"
+
+    def move_forward(self):
+        if self.direction == "North":
+            self.y += 1
+        elif self.direction == "South":
+            self.y -= 1
+        elif self.direction == "East":
+            self.x += 1
+        elif self.direction == "West":
+            self.x -= 1
+
+    def turn_left(self):
+        directions = ["North", "West", "South", "East"]
+        index = directions.index(self.direction)
+        self.direction = directions[(index + 1) % 4]
+
+    def turn_right(self):
+        directions = ["North", "East", "South", "West"]
+        index = directions.index(self.direction)
+        self.direction = directions[(index + 1) % 4]
+
+    def status(self):
+        print("\nRobot Status")
+        print("-------------------")
+        print("Position :", (self.x, self.y))
+        print("Direction:", self.direction)
+        print("-------------------")
+
+
+robot = Robot()
+
+while True:
+    print("\n===== Robot Control Menu =====")
+    print("1. Move Forward")
+    print("2. Turn Left")
+    print("3. Turn Right")
+    print("4. Show Status")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        robot.move_forward()
+        print("Robot moved forward.")
+    elif choice == "2":
+        robot.turn_left()
+        print("Robot turned left.")
+    elif choice == "3":
+        robot.turn_right()
+        print("Robot turned right.")
+    elif choice == "4":
+        robot.status()
+    elif choice == "5":
+        print("Robot simulation ended.")
+        break
+    else:
+        print("Invalid choice! Try again.")
