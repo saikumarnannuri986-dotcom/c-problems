@@ -1,0 +1,96 @@
+# Mobile Management System
+
+mobiles = []
+
+def add_mobile():
+    brand = input("Enter Brand: ")
+    model = input("Enter Model: ")
+    price = float(input("Enter Price: "))
+    storage = input("Enter Storage (e.g., 128GB): ")
+
+    mobile = {
+        "Brand": brand,
+        "Model": model,
+        "Price": price,
+        "Storage": storage
+    }
+
+    mobiles.append(mobile)
+    print("Mobile added successfully!\n")
+
+def view_mobiles():
+    if not mobiles:
+        print("No mobile records found.\n")
+        return
+
+    print("\n----- Mobile List -----")
+    for i, mobile in enumerate(mobiles, start=1):
+        print(f"\nMobile {i}")
+        print("Brand   :", mobile["Brand"])
+        print("Model   :", mobile["Model"])
+        print("Price   :", mobile["Price"])
+        print("Storage :", mobile["Storage"])
+
+def search_mobile():
+    model = input("Enter Model to Search: ")
+
+    for mobile in mobiles:
+        if mobile["Model"].lower() == model.lower():
+            print("\nMobile Found")
+            print("Brand   :", mobile["Brand"])
+            print("Model   :", mobile["Model"])
+            print("Price   :", mobile["Price"])
+            print("Storage :", mobile["Storage"])
+            return
+
+    print("Mobile not found.\n")
+
+def update_mobile():
+    model = input("Enter Model to Update: ")
+
+    for mobile in mobiles:
+        if mobile["Model"].lower() == model.lower():
+            mobile["Price"] = float(input("Enter New Price: "))
+            mobile["Storage"] = input("Enter New Storage: ")
+            print("Mobile updated successfully!\n")
+            return
+
+    print("Mobile not found.\n")
+
+def delete_mobile():
+    model = input("Enter Model to Delete: ")
+
+    for mobile in mobiles:
+        if mobile["Model"].lower() == model.lower():
+            mobiles.remove(mobile)
+            print("Mobile deleted successfully!\n")
+            return
+
+    print("Mobile not found.\n")
+
+while True:
+    print("\n===== Mobile Management System =====")
+    print("1. Add Mobile")
+    print("2. View Mobiles")
+    print("3. Search Mobile")
+    print("4. Update Mobile")
+    print("5. Delete Mobile")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_mobile()
+    elif choice == "2":
+        view_mobiles()
+    elif choice == "3":
+        search_mobile()
+    elif choice == "4":
+        update_mobile()
+    elif choice == "5":
+        delete_mobile()
+    elif choice == "6":
+        print("Thank you!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
