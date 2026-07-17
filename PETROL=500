@@ -1,0 +1,82 @@
+etrol_stock = 5000      # in liters
+diesel_stock = 5000
+
+petrol_price = 105.50    # per liter
+diesel_price = 95.50
+
+total_sales = 0
+
+while True:
+    print("\n===== PETROL PUMP MANAGEMENT SYSTEM =====")
+    print("1. View Stock")
+    print("2. Add Fuel Stock")
+    print("3. Sell Petrol")
+    print("4. Sell Diesel")
+    print("5. View Total Sales")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        print("\nAvailable Stock")
+        print("Petrol :", petrol_stock, "Liters")
+        print("Diesel :", diesel_stock, "Liters")
+
+    elif choice == "2":
+        fuel = input("Enter Fuel Type (Petrol/Diesel): ").lower()
+        qty = float(input("Enter Quantity to Add (Liters): "))
+
+        if fuel == "petrol":
+            petrol_stock += qty
+            print("Petrol stock updated successfully.")
+        elif fuel == "diesel":
+            diesel_stock += qty
+            print("Diesel stock updated successfully.")
+        else:
+            print("Invalid Fuel Type!")
+
+    elif choice == "3":
+        qty = float(input("Enter Petrol Quantity (Liters): "))
+
+        if qty <= petrol_stock:
+            amount = qty * petrol_price
+            petrol_stock -= qty
+            total_sales += amount
+            print("Bill Amount: ₹", amount)
+        else:
+            print("Insufficient Petrol Stock!")
+
+    elif choice == "4":
+        qty = float(input("Enter Diesel Quantity (Liters): "))
+
+        if qty <= diesel_stock:
+            amount = qty * diesel_price
+            diesel_stock -= qty
+            total_sales += amount
+            print("Bill Amount: ₹", amount)
+        else:
+            print("Insufficient Diesel Stock!")
+
+    elif choice == "5":
+        print("\nTotal Sales: ₹", total_sales)
+
+    elif choice == "6":
+        print("Thank you for using Petrol Pump Management System!")
+        break
+
+    else:
+        print("Invalid Choice! Please try again.")
+Sample Output
+===== PETROL PUMP MANAGEMENT SYSTEM =====
+1. View Stock
+2. Add Fuel Stock
+3. Sell Petrol
+4. Sell Diesel
+5. View Total Sales
+6. Exit
+
+Enter your choice: 3
+Enter Petrol Quantity (Liters): 20
+Bill Amount: ₹ 2110.0
+
+This is a basic console-based project suitable for college practice. More advanced petrol pump management systems often add customer records, employee management, inventory, billing history, and database support.
