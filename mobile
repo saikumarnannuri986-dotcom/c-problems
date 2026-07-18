@@ -1,0 +1,92 @@
+# Mobile Management System
+
+mobiles = []
+
+def add_mobile():
+    mobile = {}
+    mobile["ID"] = input("Enter Mobile ID: ")
+    mobile["Brand"] = input("Enter Brand: ")
+    mobile["Model"] = input("Enter Model: ")
+    mobile["Price"] = float(input("Enter Price: "))
+    mobile["Stock"] = int(input("Enter Stock Quantity: "))
+    mobiles.append(mobile)
+    print("Mobile added successfully!\n")
+
+
+def view_mobiles():
+    if len(mobiles) == 0:
+        print("No mobiles available.\n")
+    else:
+        print("\n----- Mobile List -----")
+        for m in mobiles:
+            print(f"ID: {m['ID']}")
+            print(f"Brand: {m['Brand']}")
+            print(f"Model: {m['Model']}")
+            print(f"Price: ₹{m['Price']}")
+            print(f"Stock: {m['Stock']}")
+            print("-" * 30)
+
+
+def search_mobile():
+    mid = input("Enter Mobile ID to search: ")
+    found = False
+    for m in mobiles:
+        if m["ID"] == mid:
+            print("\nMobile Found")
+            print(f"Brand : {m['Brand']}")
+            print(f"Model : {m['Model']}")
+            print(f"Price : ₹{m['Price']}")
+            print(f"Stock : {m['Stock']}")
+            found = True
+            break
+    if not found:
+        print("Mobile not found.\n")
+
+
+def update_mobile():
+    mid = input("Enter Mobile ID to update: ")
+    for m in mobiles:
+        if m["ID"] == mid:
+            m["Price"] = float(input("Enter New Price: "))
+            m["Stock"] = int(input("Enter New Stock: "))
+            print("Mobile updated successfully!\n")
+            return
+    print("Mobile not found.\n")
+
+
+def delete_mobile():
+    mid = input("Enter Mobile ID to delete: ")
+    for m in mobiles:
+        if m["ID"] == mid:
+            mobiles.remove(m)
+            print("Mobile deleted successfully!\n")
+            return
+    print("Mobile not found.\n")
+
+
+while True:
+    print("\n===== Mobile Management System =====")
+    print("1. Add Mobile")
+    print("2. View Mobiles")
+    print("3. Search Mobile")
+    print("4. Update Mobile")
+    print("5. Delete Mobile")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_mobile()
+    elif choice == "2":
+        view_mobiles()
+    elif choice == "3":
+        search_mobile()
+    elif choice == "4":
+        update_mobile()
+    elif choice == "5":
+        delete_mobile()
+    elif choice == "6":
+        print("Thank you for using Mobile Management System!")
+        break
+    else:
+        print("Invalid choice! Please try a
