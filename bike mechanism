@@ -1,0 +1,101 @@
+# Bike Mechanism Management System
+
+bikes = []
+
+def add_bike():
+    bike_id = input("Enter Bike ID: ")
+    owner = input("Enter Owner Name: ")
+    model = input("Enter Bike Model: ")
+    problem = input("Enter Problem: ")
+    status = "Pending"
+
+    bike = {
+        "Bike ID": bike_id,
+        "Owner": owner,
+        "Model": model,
+        "Problem": problem,
+        "Status": status
+    }
+
+    bikes.append(bike)
+    print("\nBike added successfully!\n")
+
+
+def view_bikes():
+    if not bikes:
+        print("\nNo bike records found.\n")
+        return
+
+    print("\n----- Bike Records -----")
+    for bike in bikes:
+        print("----------------------------")
+        for key, value in bike.items():
+            print(f"{key}: {value}")
+    print()
+
+
+def search_bike():
+    bike_id = input("Enter Bike ID to search: ")
+
+    for bike in bikes:
+        if bike["Bike ID"] == bike_id:
+            print("\nBike Found")
+            print("----------------------------")
+            for key, value in bike.items():
+                print(f"{key}: {value}")
+            return
+
+    print("Bike not found.\n")
+
+
+def update_status():
+    bike_id = input("Enter Bike ID: ")
+
+    for bike in bikes:
+        if bike["Bike ID"] == bike_id:
+            print("Current Status:", bike["Status"])
+            bike["Status"] = input("Enter New Status (Pending/In Progress/Completed): ")
+            print("Status updated successfully!\n")
+            return
+
+    print("Bike not found.\n")
+
+
+def delete_bike():
+    bike_id = input("Enter Bike ID: ")
+
+    for bike in bikes:
+        if bike["Bike ID"] == bike_id:
+            bikes.remove(bike)
+            print("Bike record deleted successfully!\n")
+            return
+
+    print("Bike not found.\n")
+
+
+while True:
+    print("========== Bike Mechanism Management ==========")
+    print("1. Add Bike")
+    print("2. View Bikes")
+    print("3. Search Bike")
+    print("4. Update Service Status")
+    print("5. Delete Bike")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_bike()
+    elif choice == "2":
+        view_bikes()
+    elif choice == "3":
+        search_bike()
+    elif choice == "4":
+        update_status()
+    elif choice == "5":
+        delete_bike()
+    elif choice == "6":
+        print("Thank you for using Bike Mechanism Management System!")
+        break
+    else:
+        print("Invalid choice! Please try again.\n")
