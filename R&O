@@ -1,0 +1,28 @@
+# River and Ocean Difference Program
+
+print("=== Difference Between River and Ocean ===")
+
+print("\nChoose an option:")
+print("1. River")
+print("2. Ocean")
+
+choice = input("\nEnter your choice (1 or 2): ")
+
+if choice == "1":
+    print("\n--- River ---")
+    print("1. A river is a natural flowing water body.")
+    print("2. It usually contains fresh water.")
+    print("3. It flows from mountains, lakes, or springs.")
+    print("4. It empties into an ocean, sea, or another river.")
+    print("5. Rivers are generally smaller than oceans.")
+
+elif choice == "2":
+    print("\n--- Ocean ---")
+    print("1. An ocean is a very large body of water.")
+    print("2. It contains salt water.")
+    print("3. Oceans cover about 71% of the Earth's surface.")
+    print("4. They are much larger and deeper than rivers.")
+    print("5. Oceans are home to a wide variety of marine life.")
+
+else:
+    print("\nInvalid choice! Please enter 1 or 2.")
