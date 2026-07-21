@@ -1,0 +1,29 @@
+# Room Rent Management System
+
+print("===== ROOM RENT MANAGEMENT SYSTEM =====")
+
+customer_name = input("Enter Customer Name: ")
+room_no = input("Enter Room Number: ")
+
+days = int(input("Enter Number of Days Stayed: "))
+rent_per_day = float(input("Enter Rent Per Day: "))
+food_bill = float(input("Enter Food Bill: "))
+laundry_bill = float(input("Enter Laundry Bill: "))
+other_charges = float(input("Enter Other Charges: "))
+
+room_rent = days * rent_per_day
+total_bill = room_rent + food_bill + laundry_bill + other_charges
+
+print("\n========== ROOM RENT RECEIPT ==========")
+print("Customer Name :", customer_name)
+print("Room Number   :", room_no)
+print("Days Stayed   :", days)
+print("Rent/Day      : ₹", rent_per_day)
+print("Room Rent     : ₹", room_rent)
+print("Food Bill     : ₹", food_bill)
+print("Laundry Bill  : ₹", laundry_bill)
+print("Other Charges : ₹", other_charges)
+print("---------------------------------------")
+print("Total Bill    : ₹", total_bill)
+print("=======================================")
+
