@@ -1,0 +1,83 @@
+class Ship:
+    def __init__(self, ship_id, name, ship_type, capacity):
+        self.ship_id = ship_id
+        self.name = name
+        self.ship_type = ship_type
+        self.capacity = capacity
+
+    def display(self):
+        print("\nShip ID:", self.ship_id)
+        print("Ship Name:", self.name)
+        print("Ship Type:", self.ship_type)
+        print("Capacity:", self.capacity, "tons")
+
+
+ships = []
+
+
+def add_ship():
+    ship_id = input("Enter Ship ID: ")
+    name = input("Enter Ship Name: ")
+    ship_type = input("Enter Ship Type (Cargo/Passenger/Fishing): ")
+    capacity = input("Enter Capacity (tons): ")
+
+    ship = Ship(ship_id, name, ship_type, capacity)
+    ships.append(ship)
+    print("\nShip Added Successfully!")
+
+
+def display_ships():
+    if len(ships) == 0:
+        print("\nNo ships available.")
+    else:
+        print("\n===== Ship Details =====")
+        for ship in ships:
+            ship.display()
+
+
+def search_ship():
+    ship_id = input("Enter Ship ID to Search: ")
+    found = False
+    for ship in ships:
+        if ship.ship_id == ship_id:
+            print("\nShip Found!")
+            ship.display()
+            found = True
+            break
+    if not found:
+        print("\nShip Not Found!")
+
+
+def remove_ship():
+    ship_id = input("Enter Ship ID to Remove: ")
+    for ship in ships:
+        if ship.ship_id == ship_id:
+            ships.remove(ship)
+            print("\nShip Removed Successfully!")
+            return
+    print("\nShip Not Found!")
+
+
+while True:
+    print("\n===== Ship Management System =====")
+    print("1. Add Ship")
+    print("2. Display Ships")
+    print("3. Search Ship")
+    print("4. Remove Ship")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_ship()
+    elif choice == "2":
+        display_ships()
+    elif choice == "3":
+        search_ship()
+    elif choice == "4":
+        remove_ship()
+    elif choice == "5":
+        print("Thank you for using Ship Management System!")
+        break
+    else:
+        print("Invalid choice! Please try again.")
