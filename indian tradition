@@ -1,0 +1,48 @@
+# Indian Traditional Festival Management System
+
+festivals = [
+    {"name": "Diwali", "date": "12-Nov", "state": "All India"},
+    {"name": "Pongal", "date": "14-Jan", "state": "Tamil Nadu"},
+    {"name": "Ugadi", "date": "30-Mar", "state": "Andhra Pradesh & Telangana"},
+    {"name": "Onam", "date": "August/September", "state": "Kerala"},
+    {"name": "Baisakhi", "date": "13-Apr", "state": "Punjab"}
+]
+
+def display_festivals():
+    print("\n------ Indian Traditional Festivals ------")
+    for i, festival in enumerate(festivals, start=1):
+        print(f"{i}. {festival['name']}")
+        print(f"   Date : {festival['date']}")
+        print(f"   State: {festival['state']}")
+        print("-" * 40)
+
+def add_festival():
+    name = input("Enter Festival Name: ")
+    date = input("Enter Festival Date: ")
+    state = input("Enter State: ")
+
+    festivals.append({
+        "name": name,
+        "date": date,
+        "state": state
+    })
+
+    print("\nFestival added successfully!")
+
+while True:
+    print("\n===== Indian Traditional Festival Management =====")
+    print("1. View Festivals")
+    print("2. Add Festival")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        display_festivals()
+    elif choice == "2":
+        add_festival()
+    elif choice == "3":
+        print("Thank you! Happy Festivals!")
+        break
+    else:
+        print("Invalid choice! Please try again.")
