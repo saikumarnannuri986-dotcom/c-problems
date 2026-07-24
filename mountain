@@ -1,0 +1,67 @@
+# Mountain Management System
+
+mountains = []
+
+def add_mountain():
+    name = input("Enter Mountain Name: ")
+    height = float(input("Enter Height (meters): "))
+    country = input("Enter Country: ")
+
+    mountain = {
+        "Name": name,
+        "Height": height,
+        "Country": country
+    }
+
+    mountains.append(mountain)
+    print("Mountain added successfully!\n")
+
+def view_mountains():
+    if len(mountains) == 0:
+        print("No mountain records found.\n")
+    else:
+        print("\nMountain Details")
+        print("-" * 40)
+        for i, mountain in enumerate(mountains, start=1):
+            print(f"Mountain {i}")
+            print("Name    :", mountain["Name"])
+            print("Height  :", mountain["Height"], "meters")
+            print("Country :", mountain["Country"])
+            print("-" * 40)
+
+def search_mountain():
+    search = input("Enter Mountain Name to Search: ").lower()
+
+    found = False
+    for mountain in mountains:
+        if mountain["Name"].lower() == search:
+            print("\nMountain Found")
+            print("Name    :", mountain["Name"])
+            print("Height  :", mountain["Height"], "meters")
+            print("Country :", mountain["Country"])
+            found = True
+            break
+
+    if not found:
+        print("Mountain not found.\n")
+
+while True:
+    print("\n===== Mountain Management System =====")
+    print("1. Add Mountain")
+    print("2. View Mountains")
+    print("3. Search Mountain")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_mountain()
+    elif choice == "2":
+        view_mountains()
+    elif choice == "3":
+        search_mountain()
+    elif choice == "4":
+        print("Thank you for using Mountain Management System!")
+        break
+    else:
+        print("Invalid choice! Please try again.")
