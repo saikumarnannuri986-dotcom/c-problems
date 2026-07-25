@@ -1,0 +1,75 @@
+# Mobile Management System
+
+mobiles = {}
+
+while True:
+    print("\n===== MOBILE MANAGEMENT SYSTEM =====")
+    print("1. Add Mobile")
+    print("2. View Mobiles")
+    print("3. Search Mobile")
+    print("4. Update Mobile Price")
+    print("5. Delete Mobile")
+    print("6. Exit")
+
+    choice = input("Enter your choice (1-6): ")
+
+    if choice == "1":
+        mobile_id = input("Enter Mobile ID: ")
+        brand = input("Enter Brand: ")
+        model = input("Enter Model: ")
+        price = float(input("Enter Price: "))
+        mobiles[mobile_id] = {
+            "Brand": brand,
+            "Model": model,
+            "Price": price
+        }
+        print("Mobile added successfully!")
+
+    elif choice == "2":
+        if len(mobiles) == 0:
+            print("No mobile records found.")
+        else:
+            print("\n--- Mobile Records ---")
+            for mobile_id, details in mobiles.items():
+                print(f"\nMobile ID : {mobile_id}")
+                print(f"Brand     : {details['Brand']}")
+                print(f"Model     : {details['Model']}")
+                print(f"Price     : ₹{details['Price']}")
+
+    elif choice == "3":
+        mobile_id = input("Enter Mobile ID to search: ")
+        if mobile_id in mobiles:
+            details = mobiles[mobile_id]
+            print("\nMobile Found")
+            print(f"Brand : {details['Brand']}")
+            print(f"Model : {details['Model']}")
+            print(f"Price : ₹{details['Price']}")
+        else:
+            print("Mobile not found.")
+
+    elif choice == "4":
+        mobile_id = input("Enter Mobile ID to update: ")
+        if mobile_id in mobiles:
+            new_price = float(input("Enter New Price: "))
+            mobiles[mobile_id]["Price"] = new_price
+            print("Price updated successfully!")
+        else:
+            print("Mobile not found.")
+
+    elif choice == "5":
+        mobile_id = input("Enter Mobile ID to delete: ")
+        if mobile_id in mobiles:
+            del mobiles[mobile_id]
+            print("Mobile deleted successfully!")
+        else:
+            print("Mobile not found.")
+
+    elif choice == "6":
+        print("Thank you for using Mobile Management System.")
+        break
+
+    else:
+        print("Invalid choice! Please enter a number between 1 and 6.")
+
+
+
