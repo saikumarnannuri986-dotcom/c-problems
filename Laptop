@@ -1,0 +1,85 @@
+# Laptop Management System
+
+laptops = []
+
+def add_laptop():
+    laptop_id = input("Enter Laptop ID: ")
+    brand = input("Enter Brand: ")
+    model = input("Enter Model: ")
+    price = float(input("Enter Price: "))
+    laptops.append({
+        "ID": laptop_id,
+        "Brand": brand,
+        "Model": model,
+        "Price": price
+    })
+    print("Laptop added successfully!\n")
+
+def view_laptops():
+    if not laptops:
+        print("No laptop records found.\n")
+        return
+
+    print("\n--- Laptop Records ---")
+    for laptop in laptops:
+        print(f"ID: {laptop['ID']}")
+        print(f"Brand: {laptop['Brand']}")
+        print(f"Model: {laptop['Model']}")
+        print(f"Price: ₹{laptop['Price']}")
+        print("-" * 25)
+
+def search_laptop():
+    laptop_id = input("Enter Laptop ID to search: ")
+    for laptop in laptops:
+        if laptop["ID"] == laptop_id:
+            print("\nLaptop Found:")
+            print(laptop)
+            return
+    print("Laptop not found.\n")
+
+def update_laptop():
+    laptop_id = input("Enter Laptop ID to update: ")
+    for laptop in laptops:
+        if laptop["ID"] == laptop_id:
+            laptop["Brand"] = input("Enter New Brand: ")
+            laptop["Model"] = input("Enter New Model: ")
+            laptop["Price"] = float(input("Enter New Price: "))
+            print("Laptop updated successfully!\n")
+            return
+    print("Laptop not found.\n")
+
+def delete_laptop():
+    laptop_id = input("Enter Laptop ID to delete: ")
+    for laptop in laptops:
+        if laptop["ID"] == laptop_id:
+            laptops.remove(laptop)
+            print("Laptop deleted successfully!\n")
+            return
+    print("Laptop not found.\n")
+
+while True:
+    print("\n===== Laptop Management System =====")
+    print("1. Add Laptop")
+    print("2. View Laptops")
+    print("3. Search Laptop")
+    print("4. Update Laptop")
+    print("5. Delete Laptop")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_laptop()
+    elif choice == "2":
+        view_laptops()
+    elif choice == "3":
+        search_laptop()
+    elif choice == "4":
+        update_laptop()
+    elif choice == "5":
+        delete_laptop()
+    elif choice == "6":
+        print("Thank you for using Laptop Management System!")
+        break
+    else:
+        print("Invalid choice! Please try again.")
