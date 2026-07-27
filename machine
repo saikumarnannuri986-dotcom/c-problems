@@ -1,0 +1,28 @@
+# Machine Learning - Student Pass Prediction
+
+from sklearn.tree import DecisionTreeClassifier
+
+# Training data
+# Study Hours
+X = [[1], [2], [3], [4], [5], [6], [7], [8]]
+
+# Result (0 = Fail, 1 = Pass)
+y = [0, 0, 0, 1, 1, 1, 1, 1]
+
+# Create model
+model = DecisionTreeClassifier()
+
+# Train the model
+model.fit(X, y)
+
+# Get input from user
+hours = float(input("Enter study hours: "))
+
+# Predict
+prediction = model.predict([[hours]])
+
+# Display result
+if prediction[0] == 1:
+    print("Prediction: Student is likely to PASS.")
+else:
+    print("Prediction: Student is likely to FAIL.")
