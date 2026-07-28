@@ -1,0 +1,30 @@
+# Building Management System
+
+class Building:
+    def __init__(self, name, floors, rooms, location):
+        self.name = name
+        self.floors = floors
+        self.rooms = rooms
+        self.location = location
+
+    def display(self):
+        print("\n----- Building Details -----")
+        print("Building Name :", self.name)
+        print("Location      :", self.location)
+        print("Floors        :", self.floors)
+        print("Total Rooms   :", self.rooms)
+
+
+# Main Program
+print("===== Building Management System =====")
+
+name = input("Enter Building Name: ")
+location = input("Enter Building Location: ")
+floors = int(input("Enter Number of Floors: "))
+rooms = int(input("Enter Total Number of Rooms: "))
+
+building = Building(name, floors, rooms, location)
+
+building.display()
+
+print("\nBuilding information stored successfully!")
