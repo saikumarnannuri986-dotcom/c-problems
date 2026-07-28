@@ -1,0 +1,80 @@
+# Worker Management System
+
+workers = {}
+
+while True:
+    print("\n===== Worker Management System =====")
+    print("1. Add Worker")
+    print("2. View Workers")
+    print("3. Search Worker")
+    print("4. Update Salary")
+    print("5. Delete Worker")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        worker_id = input("Enter Worker ID: ")
+        name = input("Enter Worker Name: ")
+        age = int(input("Enter Worker Age: "))
+        department = input("Enter Department: ")
+        salary = float(input("Enter Salary: "))
+
+        workers[worker_id] = {
+            "Name": name,
+            "Age": age,
+            "Department": department,
+            "Salary": salary
+        }
+
+        print("Worker added successfully!")
+
+    elif choice == "2":
+        if not workers:
+            print("No worker records found.")
+        else:
+            print("\nWorker Records")
+            print("-" * 50)
+            for wid, details in workers.items():
+                print(f"ID         : {wid}")
+                print(f"Name       : {details['Name']}")
+                print(f"Age        : {details['Age']}")
+                print(f"Department : {details['Department']}")
+                print(f"Salary     : {details['Salary']}")
+                print("-" * 50)
+
+    elif choice == "3":
+        worker_id = input("Enter Worker ID to search: ")
+        if worker_id in workers:
+            details = workers[worker_id]
+            print("\nWorker Found")
+            print(f"Name       : {details['Name']}")
+            print(f"Age        : {details['Age']}")
+            print(f"Department : {details['Department']}")
+            print(f"Salary     : {details['Salary']}")
+        else:
+            print("Worker not found.")
+
+    elif choice == "4":
+        worker_id = input("Enter Worker ID: ")
+        if worker_id in workers:
+            new_salary = float(input("Enter New Salary: "))
+            workers[worker_id]["Salary"] = new_salary
+            print("Salary updated successfully!")
+        else:
+            print("Worker not found.")
+
+    elif choice == "5":
+        worker_id = input("Enter Worker ID to delete: ")
+        if worker_id in workers:
+            del workers[worker_id]
+            print("Worker deleted successfully!")
+        else:
+            print("Worker not found.")
+
+    elif choice == "6":
+        print("Thank you for using Worker Management System.")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")
