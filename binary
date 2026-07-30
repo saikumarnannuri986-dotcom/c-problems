@@ -1,0 +1,20 @@
+# Binary Converter Program
+
+print("=== Binary Converter ===")
+print("1. Decimal to Binary")
+print("2. Binary to Decimal")
+
+choice = input("Enter your choice (1 or 2): ")
+
+if choice == "1":
+    decimal = int(input("Enter a decimal number: "))
+    binary = bin(decimal)[2:]  # Remove '0b' prefix
+    print("Binary:", binary)
+
+elif choice == "2":
+    binary = input("Enter a binary number: ")
+    decimal = int(binary, 2)
+    print("Decimal:", decimal)
+
+else:
+    print("Invalid choice!")
