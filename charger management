@@ -1,0 +1,69 @@
+# Charger Management System
+
+class Charger:
+    def __init__(self, charger_id, brand, charger_type, power, price):
+        self.charger_id = charger_id
+        self.brand = brand
+        self.charger_type = charger_type
+        self.power = power
+        self.price = price
+
+    def display(self):
+        print(f"ID: {self.charger_id}")
+        print(f"Brand: {self.brand}")
+        print(f"Type: {self.charger_type}")
+        print(f"Power: {self.power}W")
+        print(f"Price: ₹{self.price}")
+        print("-" * 30)
+
+
+chargers = []
+
+while True:
+    print("\n===== Charger Management System =====")
+    print("1. Add Charger")
+    print("2. View Chargers")
+    print("3. Search Charger")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        charger_id = input("Enter Charger ID: ")
+        brand = input("Enter Brand: ")
+        charger_type = input("Enter Charger Type (USB-C/Lightning/Micro USB): ")
+        power = int(input("Enter Power (Watts): "))
+        price = float(input("Enter Price: "))
+
+        charger = Charger(charger_id, brand, charger_type, power, price)
+        chargers.append(charger)
+
+        print("Charger added successfully!")
+
+    elif choice == "2":
+        if len(chargers) == 0:
+            print("No chargers available.")
+        else:
+            print("\nAvailable Chargers:")
+            for charger in chargers:
+                charger.display()
+
+    elif choice == "3":
+        search_id = input("Enter Charger ID to search: ")
+        found = False
+
+        for charger in chargers:
+            if charger.charger_id == search_id:
+                charger.display()
+                found = True
+                break
+
+        if not found:
+            print("Charger not found.")
+
+    elif choice == "4":
+        print("Thank you for using Charger Management System!")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")
