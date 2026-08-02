@@ -1,0 +1,35 @@
+# Bakery Service Management System
+
+bakery_items = {
+    "Bread": 40,
+    "Cake": 300,
+    "Cookies": 120,
+    "Donut": 50,
+    "Muffin": 80
+}
+
+print("===== Welcome to Sweet Bakery =====")
+print("Available Items:")
+
+for item, price in bakery_items.items():
+    print(f"{item} - ₹{price}")
+
+total = 0
+
+while True:
+    item = input("\nEnter item name (or 'done' to finish): ").title()
+
+    if item == "Done":
+        break
+
+    if item in bakery_items:
+        quantity = int(input("Enter quantity: "))
+        cost = bakery_items[item] * quantity
+        total += cost
+        print(f"{quantity} x {item} = ₹{cost}")
+    else:
+        print("Item not available!")
+
+print("\n========== BILL ==========")
+print(f"Total Amount: ₹{total}")
+print("Thank you for visiting Sweet Bakery!")
