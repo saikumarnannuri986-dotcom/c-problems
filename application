@@ -1,0 +1,46 @@
+class Application:
+    def __init__(self, app_id, name, purpose):
+        self.app_id = app_id
+        self.name = name
+        self.purpose = purpose
+
+    def display(self):
+        print("\nApplication Details")
+        print("-------------------")
+        print("Application ID:", self.app_id)
+        print("Applicant Name:", self.name)
+        print("Purpose:", self.purpose)
+
+
+applications = []
+
+while True:
+    print("\n=== Application Management System ===")
+    print("1. Add Application")
+    print("2. View Applications")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        app_id = input("Enter Application ID: ")
+        name = input("Enter Applicant Name: ")
+        purpose = input("Enter Purpose: ")
+
+        app = Application(app_id, name, purpose)
+        applications.append(app)
+        print("Application added successfully!")
+
+    elif choice == "2":
+        if not applications:
+            print("No applications found.")
+        else:
+            for app in applications:
+                app.display()
+
+    elif choice == "3":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
