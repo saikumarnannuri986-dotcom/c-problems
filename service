@@ -1,0 +1,70 @@
+# Service Management System
+
+services = {}
+
+def add_service():
+    service_id = input("Enter Service ID: ")
+    service_name = input("Enter Service Name: ")
+    price = float(input("Enter Service Price: "))
+
+    services[service_id] = {
+        "Name": service_name,
+        "Price": price
+    }
+    print("Service added successfully!\n")
+
+def view_services():
+    if not services:
+        print("No services available.\n")
+        return
+
+    print("\nAvailable Services")
+    print("-" * 30)
+    for sid, details in services.items():
+        print(f"ID: {sid}")
+        print(f"Name: {details['Name']}")
+        print(f"Price: ₹{details['Price']}")
+        print("-" * 30)
+
+def search_service():
+    service_id = input("Enter Service ID to search: ")
+
+    if service_id in services:
+        print("\nService Found")
+        print(f"Name : {services[service_id]['Name']}")
+        print(f"Price: ₹{services[service_id]['Price']}")
+    else:
+        print("Service not found.")
+
+def delete_service():
+    service_id = input("Enter Service ID to delete: ")
+
+    if service_id in services:
+        del services[service_id]
+        print("Service deleted successfully!")
+    else:
+        print("Service not found.")
+
+while True:
+    print("\n===== SERVICE MANAGEMENT SYSTEM =====")
+    print("1. Add Service")
+    print("2. View Services")
+    print("3. Search Service")
+    print("4. Delete Service")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_service()
+    elif choice == "2":
+        view_services()
+    elif choice == "3":
+        search_service()
+    elif choice == "4":
+        delete_service()
+    elif choice == "5":
+        print("Thank you!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
