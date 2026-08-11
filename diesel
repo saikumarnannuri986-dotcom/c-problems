@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class DieselManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter diesel quantity (litres): ");
+        double quantity = sc.nextDouble();
+
+        System.out.print("Enter price per litre: ");
+        double price = sc.nextDouble();
+
+        double totalCost = quantity * price;
+
+        System.out.println("\n--- Diesel Bill ---");
+        System.out.println("Diesel Quantity : " + quantity + " litres");
+        System.out.println("Price per Litre : Rs. " + price);
+        System.out.println("Total Cost      : Rs. " + totalCost);
+
+        sc.close();
+    }
+}
