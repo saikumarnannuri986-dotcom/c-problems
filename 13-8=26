@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter movie name: ");
+        String movie = sc.nextLine();
+
+        System.out.print("Enter hero name: ");
+        String hero = sc.nextLine();
+
+        System.out.print("Enter movie rating: ");
+        double rating = sc.nextDouble();
+
+        System.out.println("\n--- Movie Details ---");
+        System.out.println("Movie Name: " + movie);
+        System.out.println("Hero: " + hero);
+        System.out.println("Rating: " + rating);
+
+        if (rating >= 8)
+            System.out.println("Excellent Movie");
+        else if (rating >= 6)
+            System.out.println("Good Movie");
+        else
+            System.out.println("Average Movie");
+    }
+}
