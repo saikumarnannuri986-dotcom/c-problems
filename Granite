@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Factory {
+    String factoryName;
+    String product;
+    int workers;
+
+    void getDetails() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Factory Name: ");
+        factoryName = sc.nextLine();
+
+        System.out.print("Enter Product Name: ");
+        product = sc.nextLine();
+
+        System.out.print("Enter Number of Workers: ");
+        workers = sc.nextInt();
+    }
+
+    void display() {
+        System.out.println("\n--- Factory Details ---");
+        System.out.println("Factory Name : " + factoryName);
+        System.out.println("Product      : " + product);
+        System.out.println("Workers      : " + workers);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Factory f = new Factory();
+
+        f.getDetails();
+        f.display();
+    }
+}
