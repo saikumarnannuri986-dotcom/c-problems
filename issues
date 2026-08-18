@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ISSUES 100
+
+typedef struct {
+    int id;
+    char title[100];
+    char status[20]; // e.g., "Open", "Closed"
+} Issue;
+
+Issue issueTracker[MAX_ISSUES];
+int issueCount = 0;
+
+void addIssue(int id, const char *title) {
+    if (issueCount < MAX_ISSUES) {
+        issueTracker[issueCount].id = id;
+        strncpy(issueTracker[issueCount].title, title, sizeof(issueTracker[issueCount].title) - 1);
+        strcpy(issueTracker[issueCount].status, "Open");
+        issueCount++;
+        printf("Issue #%d added successfully.\n", id);
+    } else {
+        printf("Tracker full!\n");
+    }
+}
+
+void listIssues(void) {
+    printf("\n--- Current Issues ---\n");
+    for (int i = 0; i < issueCount; i++) {
+        printf("ID: %d | Title: %s | Status: %s\n", 
+               issueTracker[i].id, 
+               issueTracker[i].title, 
+               issueTracker[i].status);
+    }
+}
+
+int main(void) {
+    addIssue(101, "Fix array index out of bounds error");
+    addIssue(102, "Implement user authentication module");
+    
+    listIssues();
+    
+    return 0;
+}
