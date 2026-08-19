@@ -1,0 +1,62 @@
+import random
+
+class MarbleBag:
+    def __init__(self):
+        self.marbles = {}
+
+    def add_marbles(self, color: str, count: int = 1):
+        """Add a specific number of marbles of a given color."""
+        color = color.lower()
+        self.marbles[color] = self.marbles.get(color, 0) + count
+        print(f"Added {count} {color} marble(s).")
+
+    def total_marbles(self) -> int:
+        """Return total count of all marbles in the bag."""
+        return sum(self.marbles.values())
+
+    def draw_marble(self) -> str:
+        """Randomly draw a single marble from the bag."""
+        if self.total_marbles() == 0:
+            print("The marble bag is empty!")
+            return None
+        
+        # Create a list representing every marble in the bag
+        bag_contents = [color for color, count in self.marbles.items() for _ in range(count)]
+        drawn = random.choice(bag_contents)
+        
+        # Remove drawn marble from the collection
+        self.marbles[drawn] -= 1
+        if self.marbles[drawn] == 0:
+            del self.marbles[drawn]
+            
+        print(f"You drew a {drawn} marble!")
+        return drawn
+
+    def show_collection(self):
+        """Display current count of marbles by color."""
+        print("\n--- Current Marble Collection ---")
+        if not self.marbles:
+            print("Empty")
+        else:
+            for color, count in self.marbles.items():
+                print(f"- {color.capitalize()}: {count}")
+            print(f"Total: {self.total_marbles()}")
+        print("---------------------------------\n")
+
+
+# --- Example Usage ---
+if __name__ == "__main__":
+    bag = MarbleBag()
+    
+    # Adding marbles
+    bag.add_marbles("red", 5)
+    bag.add_marbles("blue", 3)
+    bag.add_marbles("green", 2)
+    
+    bag.show_collection()
+    
+    # Draw marbles randomly
+    bag.draw_marble()
+    bag.draw_marble()
+    
+    bag.show_collection()
