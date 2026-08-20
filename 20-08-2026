@@ -1,0 +1,27 @@
+name: Build and Test C Code
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up GCC compiler
+      run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    - name: Compile C program
+      run: |
+        # Replace 'p1.c' with your specific C file name
+        gcc -Wall -o output_program p1.c
+
+    - name: Run C program
+      run: |
+        ./output_program
