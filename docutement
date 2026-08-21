@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void create_and_write(const char *filename) {
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error creating file");
+        return;
+    }
+    fprintf(file, "Document Title: Sample Report\n");
+    fprintf(file, "Author: C Program\n");
+    fprintf(file, "Content: This is a newly created document.\n");
+    fclose(file);
+    printf("Document created and initial text written successfully.\n");
+}
+
+void append_document(const char *filename) {
+    FILE *file = fopen(filename, "a");
+    if (file == NULL) {
+        perror("Error opening file for appending");
+        return;
+    }
+    fprintf(file, "Appended Line: Document updated successfully.\n");
+    fclose(file);
+    printf("Text appended to document.\n");
+}
+
+void read_document(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Error opening file for reading");
+        return;
+    }
+
+    char buffer[256];
+    printf("\n--- Reading Document: %s ---\n", filename);
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        printf("%s", buffer);
+    }
+    printf("-------------------------------\n\n");
+
+    fclose(file);
+}
+
+int main() {
+    const char *doc_name = "document.txt";
+
+    // 1. Create a document and write content
+    create_and_write(doc_name);
+
+    // 2. Append additional content
+    append_document(doc_name);
+
+    // 3. Read and display the document
+    read_document(doc_name);
+
+    return 0;
+}
