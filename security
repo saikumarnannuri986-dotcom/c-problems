@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ATTEMPTS 3
+#define PASSWORD "Secur3P@ss"
+
+int main() {
+    char input[32];
+    int attempts = 0;
+    int authenticated = 0;
+
+    while (attempts < MAX_ATTEMPTS && !authenticated) {
+        printf("Enter security password: ");
+        if (scanf("%31s", input) != 1) {
+            break;
+        }
+
+        if (strcmp(input, PASSWORD) == 0) {
+            authenticated = 1;
+        } else {
+            attempts++;
+            printf("Access denied. Attempts remaining: %d\n", MAX_ATTEMPTS - attempts);
+        }
+    }
+
+    if (authenticated) {
+        printf("\n[ACCESS GRANTED] Welcome to the secure system.\n");
+    } else {
+        printf("\n[SYSTEM LOCKED] Maximum authentication attempts exceeded.\n");
+    }
+
+    return 0;
+}
