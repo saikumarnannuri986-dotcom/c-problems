@@ -1,0 +1,22 @@
+def calculate_bill(items, tax_rate=0.05, tip_percentage=0.10):
+    subtotal = sum(items.values())
+    tax = subtotal * tax_rate
+    tip = subtotal * tip_percentage
+    total = subtotal + tax + tip
+    return {
+        "Subtotal": round(subtotal, 2),
+        "Tax": round(tax, 2),
+        "Tip": round(tip, 2),
+        "Total": round(total, 2)
+    }
+
+order = {
+    "Burger": 12.50,
+    "Fries": 4.50,
+    "Drink": 2.50
+}
+
+bill_details = calculate_bill(order)
+
+for key, value in bill_details.items():
+    print(f"{key}: ${value:.2f}")
