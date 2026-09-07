@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Item {
+    int id;
+    char name[50];
+    float metric_score;
+    int defects;
+};
+
+const char* evaluate_quality(struct Item item) {
+    if (item.metric_score >= 85.0 && item.defects == 0) {
+        return "Grade A (Excellent)";
+    } else if (item.metric_score >= 70.0 && item.defects <= 2) {
+        return "Grade B (Acceptable)";
+    } else {
+        return "Grade C (Rejected)";
+    }
+}
+
+int main() {
+    struct Item sample = {101, "Precision Valve", 92.5, 0};
+    
+    printf("Item ID: %d\n", sample.id);
+    printf("Item Name: %s\n", sample.name);
+    printf("Quality Score: %.2f\n", sample.metric_score);
+    printf("Defect Count: %d\n", sample.defects);
+    printf("Quality Rating: %s\n", evaluate_quality(sample));
+
+    return 0;
+}
