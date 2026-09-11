@@ -1,0 +1,34 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
+
+public class DocumentManager {
+
+    public static void main(String[] args) {
+        Path filePath = Paths.get("document.txt");
+
+        try {
+            String initialContent = "Hello, World!\nThis is a sample document created in Java.\n";
+            Files.writeString(filePath, initialContent);
+            System.out.println("Document created successfully.");
+
+            String additionalContent = "Appending a new line to the document.\n";
+            Files.writeString(filePath, additionalContent, StandardOpenOption.APPEND);
+            System.out.println("Content appended successfully.");
+
+            System.out.println("\n--- Reading Document Contents ---");
+            List<String> lines = Files.readAllLines(filePath);
+            for (String line : lines) {
+                System.out.println(line);
+            }
+
+            String fullText = Files.readString(filePath);
+
+        } catch (IOException e) {
+            System.err.println("An error occurred while handling the document: " + e.getMessage());
+        }
+    }
+}
