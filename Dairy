@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+struct MilkRecord {
+    int id;
+    char name[50];
+    float liters;
+    float price_per_liter;
+    float total_bill;
+};
+
+void calculateBill(struct MilkRecord *record) {
+    record->total_bill = record->liters * record->price_per_liter;
+}
+
+void displayRecord(struct MilkRecord record) {
+    printf("\n--- Dairy Entry ---\n");
+    printf("Customer ID: %d\n", record.id);
+    printf("Customer Name: %s\n", record.name);
+    printf("Quantity: %.2f Liters\n", record.liters);
+    printf("Price per Liter: $%.2f\n", record.price_per_liter);
+    printf("Total Amount Due: $%.2f\n", record.total_bill);
+}
+
+int main() {
+    struct MilkRecord record;
+
+    printf("Enter Customer ID: ");
+    scanf("%d", &record.id);
+
+    printf("Enter Customer Name: ");
+    scanf(" %[^\n]s", record.name);
+
+    printf("Enter Milk Quantity (in Liters): ");
+    scanf("%f", &record.liters);
+
+    printf("Enter Price per Liter: ");
+    scanf("%f", &record.price_per_liter);
+
+    calculateBill(&record);
+    displayRecord(record);
+
+    return 0;
+}
