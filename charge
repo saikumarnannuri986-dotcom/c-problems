@@ -1,0 +1,23 @@
+class Battery {
+    private int level;
+
+    public Battery(int initialLevel) {
+        this.level = Math.min(Math.max(initialLevel, 0), 100);
+    }
+
+    public void charge(int amount) {
+        if (amount > 0) {
+            this.level = Math.min(this.level + amount, 100);
+        }
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public static void main(String[] args) {
+        Battery phone = new Battery(45);
+        phone.charge(30);
+        System.out.println("Current Charge: " + phone.getLevel() + "%");
+    }
+}
