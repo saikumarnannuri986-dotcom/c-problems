@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class CPU {
+    private String model;
+    private double clockSpeedGHz;
+
+    public CPU(String model, double clockSpeedGHz) {
+        this.model = model;
+        this.clockSpeedGHz = clockSpeedGHz;
+    }
+
+    public void processData(String data) {
+        System.out.println("CPU (" + model + " @ " + clockSpeedGHz + "GHz) processing: " + data);
+    }
+}
+
+class RAM {
+    private int capacityGB;
+
+    public RAM(int capacityGB) {
+        this.capacityGB = capacityGB;
+    }
+
+    public void loadIntoMemory(String data) {
+        System.out.println("RAM (" + capacityGB + "GB) loaded data into memory: " + data);
+    }
+}
+
+class Storage {
+    private int capacityGB;
+    private List<String> files;
+
+    public Storage(int capacityGB) {
+        this.capacityGB = capacityGB;
+        this.files = new ArrayList<>();
+    }
+
+    public void saveFile(String fileName) {
+        files.add(fileName);
+        System.out.println("Storage (" + capacityGB + "GB) saved file: " + fileName);
+    }
+
+    public List<String> getFiles() {
+        return files;
+    }
+}
+
+public class ComputerSystem {
+    private CPU cpu;
+    private RAM ram;
+    private Storage storage;
+    private boolean isPoweredOn;
+
+    public ComputerSystem(CPU cpu, RAM ram, Storage storage) {
+        this.cpu = cpu;
+        this.ram = ram;
+        this.storage = storage;
+        this.isPoweredOn = false;
+    }
+
+    public void powerOn() {
+        isPoweredOn = true;
+        System.out.println("Computer System booted up.");
+    }
+
+    public void powerOff() {
+        isPoweredOn = false;
+        System.out.println("Computer System shut down.");
+    }
+
+    public void executeTask(String taskName, String fileName) {
+        if (!isPoweredOn) {
+            System.out.println("Error: System is powered off.");
+            return;
+        }
+        ram.loadIntoMemory(taskName);
+        cpu.processData(taskName);
+        storage.saveFile(fileName);
+    }
+
+    public static void main(String[] args) {
+        CPU cpu = new CPU("Intel Core i7", 3.8);
+        RAM ram = new RAM(16);
+        Storage storage = new Storage(512);
+
+        ComputerSystem myComputer = new ComputerSystem(cpu, ram, storage);
+
+        myComputer.powerOn();
+        myComputer.executeTask("Compile Java Program", "Main.class");
+        myComputer.powerOff();
+    }
+}
