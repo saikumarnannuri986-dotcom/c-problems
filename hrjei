@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void writeFile(const char *filename) {
+    // Open file in write mode ("w"). Creates file or overwrites existing content.
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        return;
+    }
+
+    fprintf(fp, "Hello, World!\n");
+    fprintf(fp, "This is line %d of the file.\n", 1);
+
+    fclose(fp); // Always close the file when done
+    printf("Successfully written to '%s'.\n", filename);
+}
+
+void appendFile(const char *filename) {
+    // Open file in append mode ("a"). Preserves existing content and writes at the end.
+    FILE *fp = fopen(filename, "a");
+    if (fp == NULL) {
+        perror("Error opening file for appending");
+        return;
+    }
+
+    fprintf(fp, "This line was appended to the end.\n");
+
+    fclose(fp);
+    printf("Successfully appended to '%s'.\n", filename);
+}
+
+void readFile(const char *filename) {
+    // Open file in read mode ("r").
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("Error opening file for reading");
+        return;
+    }
+
+    char buffer[256];
+    printf("\n--- Reading contents of '%s' ---\n", filename);
+
+    // Read the file line by line until EOF (End Of File)
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%s", buffer);
+    }
+
+    fclose(fp);
+}
+
+int main() {
+    const char *filename = "example.txt";
+
+    // 1. Write data
+    writeFile(filename);
+
+    // 2. Append additional data
+    appendFile(filename);
+
+    // 3. Read back the file contents
+    readFile(filename);
+
+    return 0;
+}
