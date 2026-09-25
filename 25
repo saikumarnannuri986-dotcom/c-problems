@@ -1,0 +1,235 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NAME 100
+#define MAX_TEXT 500
+
+// Struct representing an artifact discovered by an anthropologist
+typedef struct {
+    int id;
+    char artifactName[MAX_NAME];
+    char eraOrPeriod[MAX_NAME];
+    char locationFound[MAX_NAME];
+    double estimatedAgeYears;
+} Artifact;
+
+// Struct representing a cultural field note entry
+typedef struct {
+    int noteId;
+    char cultureStudied[MAX_NAME];
+    char observationTopic[MAX_NAME];
+    char notes[MAX_TEXT];
+} FieldNote;
+
+// Struct representing the Anthropologist profile
+typedef struct {
+    char name[MAX_NAME];
+    char specialization[MAX_NAME]; // e.g., Cultural, Archaeology, Biological, Linguistic
+    int totalArtifactsLogged;
+    int totalNotesLogged;
+} Anthropologist;
+
+// Function prototypes
+void displayAnthropologistInfo(const Anthropologist *anthropologist);
+void addArtifact(Artifact **artifacts, int *count);
+void addFieldNote(FieldNote **notes, int *count);
+void displayArtifacts(const Artifact *artifacts, int count);
+void displayFieldNotes(const FieldNote *notes, int count);
+void saveReportToFile(const Anthropologist *anthropologist, const Artifact *artifacts, int artifactCount, const FieldNote *notes, int noteCount);
+
+int main() {
+    Anthropologist anthropologist;
+    Artifact *artifacts = NULL;
+    FieldNote *notes = NULL;
+    int artifactCount = 0;
+    int noteCount = 0;
+    int choice;
+
+    printf("===================================================\n");
+    printf("   ANTHROPOLOGY FIELDWORK & RESEARCH MANAGEMENT   \n");
+    printf("===================================================\n");
+
+    // Initialize Anthropologist Details
+    printf("Enter Anthropologist Name: ");
+    fgets(anthropologist.name, sizeof(anthropologist.name), stdin);
+    anthropologist.name[strcspn(anthropologist.name, "\n")] = '\0';
+
+    printf("Enter Subfield / Specialization (e.g., Cultural, Archaeology): ");
+    fgets(anthropologist.specialization, sizeof(anthropologist.specialization), stdin);
+    anthropologist.specialization[strcspn(anthropologist.specialization, "\n")] = '\0';
+
+    anthropologist.totalArtifactsLogged = 0;
+    anthropologist.totalNotesLogged = 0;
+
+    do {
+        printf("\n--- ANTHROPOLOGIST MAIN MENU ---\n");
+        printf("1. View Researcher Profile\n");
+        printf("2. Log New Artifact Discovery\n");
+        printf("3. Record Cultural Field Note\n");
+        printf("4. Display All Discovered Artifacts\n");
+        printf("5. Display All Field Notes\n");
+        printf("6. Export Field Report to File\n");
+        printf("7. Exit Program\n");
+        printf("Enter your choice (1-7): ");
+        scanf("%d", &choice);
+        getchar(); // Clear newline buffer
+
+        switch (choice) {
+            case 1:
+                displayAnthropologistInfo(&anthropologist);
+                break;
+            case 2:
+                addArtifact(&artifacts, &artifactCount);
+                anthropologist.totalArtifactsLogged = artifactCount;
+                break;
+            case 3:
+                addFieldNote(&notes, &noteCount);
+                anthropologist.totalNotesLogged = noteCount;
+                break;
+            case 4:
+                displayArtifacts(artifacts, artifactCount);
+                break;
+            case 5:
+                displayFieldNotes(notes, noteCount);
+                break;
+            case 6:
+                saveReportToFile(&anthropologist, artifacts, artifactCount, notes, noteCount);
+                break;
+            case 7:
+                printf("\nExiting program... Cleaning up dynamic allocations.\n");
+                break;
+            default:
+                printf("Invalid option. Please try again.\n");
+        }
+    } while (choice != 7);
+
+    // Free dynamically allocated memory
+    free(artifacts);
+    free(notes);
+
+    return 0;
+}
+
+void displayAnthropologistInfo(const Anthropologist *anthropologist) {
+    printf("\n--- Anthropologist Profile ---\n");
+    printf("Researcher Name : %s\n", anthropologist->name);
+    printf("Specialization  : %s\n", anthropologist->specialization);
+    printf("Logged Artifacts: %d\n", anthropologist->totalArtifactsLogged);
+    printf("Logged Notes    : %d\n", anthropologist->totalNotesLogged);
+}
+
+void addArtifact(Artifact **artifacts, int *count) {
+    *artifacts = realloc(*artifacts, (*count + 1) * sizeof(Artifact));
+    if (*artifacts == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+
+    Artifact *current = &((*artifacts)[*count]);
+    current->id = *count + 1;
+
+    printf("\n--- Log Artifact #%d ---\n", current->id);
+    printf("Artifact Name: ");
+    fgets(current->artifactName, sizeof(current->artifactName), stdin);
+    current->artifactName[strcspn(current->artifactName, "\n")] = '\0';
+
+    printf("Historical Period/Era: ");
+    fgets(current->eraOrPeriod, sizeof(current->eraOrPeriod), stdin);
+    current->eraOrPeriod[strcspn(current->eraOrPeriod, "\n")] = '\0';
+
+    printf("Excavation Site / Location: ");
+    fgets(current->locationFound, sizeof(current->locationFound), stdin);
+    current->locationFound[strcspn(current->locationFound, "\n")] = '\0';
+
+    printf("Estimated Age (Years): ");
+    scanf("%lf", &current->estimatedAgeYears);
+    getchar(); // Clear buffer
+
+    (*count)++;
+    printf("Artifact successfully recorded!\n");
+}
+
+void addFieldNote(FieldNote **notes, int *count) {
+    *notes = realloc(*notes, (*count + 1) * sizeof(FieldNote));
+    if (*notes == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+
+    FieldNote *current = &((*notes)[*count]);
+    current->noteId = *count + 1;
+
+    printf("\n--- Cultural Field Note #%d ---\n", current->noteId);
+    printf("Community / Culture Studied: ");
+    fgets(current->cultureStudied, sizeof(current->cultureStudied), stdin);
+    current->cultureStudied[strcspn(current->cultureStudied, "\n")] = '\0';
+
+    printf("Observation Topic (e.g., Rituals, Kinship, Language): ");
+    fgets(current->observationTopic, sizeof(current->observationTopic), stdin);
+    current->observationTopic[strcspn(current->observationTopic, "\n")] = '\0';
+
+    printf("Detailed Field Observations: ");
+    fgets(current->notes, sizeof(current->notes), stdin);
+    current->notes[strcspn(current->notes, "\n")] = '\0';
+
+    (*count)++;
+    printf("Field note recorded successfully!\n");
+}
+
+void displayArtifacts(const Artifact *artifacts, int count) {
+    if (count == 0) {
+        printf("\nNo artifacts recorded yet.\n");
+        return;
+    }
+
+    printf("\n================ ARTIFACT CATALOG ================\n");
+    for (int i = 0; i < count; i++) {
+        printf("ID: %d | Name: %s | Era: %s | Location: %s | Est. Age: %.0f years\n",
+               artifacts[i].id, artifacts[i].artifactName, artifacts[i].eraOrPeriod,
+               artifacts[i].locationFound, artifacts[i].estimatedAgeYears);
+    }
+}
+
+void displayFieldNotes(const FieldNote *notes, int count) {
+    if (count == 0) {
+        printf("\nNo field notes recorded yet.\n");
+        return;
+    }
+
+    printf("\n================ FIELD NOTES JOURNAL ================\n");
+    for (int i = 0; i < count; i++) {
+        printf("[%d] Culture: %s | Topic: %s\n    Notes: %s\n",
+               notes[i].noteId, notes[i].cultureStudied, notes[i].observationTopic, notes[i].notes);
+    }
+}
+
+void saveReportToFile(const Anthropologist *anthropologist, const Artifact *artifacts, int artifactCount, const FieldNote *notes, int noteCount) {
+    FILE *file = fopen("anthropology_field_report.txt", "w");
+    if (file == NULL) {
+        printf("Error opening file for writing!\n");
+        return;
+    }
+
+    fprintf(file, "===================================================\n");
+    fprintf(file, "          ANTHROPOLOGY FIELDWORK REPORT           \n");
+    fprintf(file, "===================================================\n\n");
+    fprintf(file, "Researcher: %s\n", anthropologist->name);
+    fprintf(file, "Specialization: %s\n\n", anthropologist->specialization);
+
+    fprintf(file, "--- CATALOGED ARTIFACTS (%d Total) ---\n", artifactCount);
+    for (int i = 0; i < artifactCount; i++) {
+        fprintf(file, "%d. %s | Era: %s | Site: %s | Age: %.0f yrs\n",
+                artifacts[i].id, artifacts[i].artifactName, artifacts[i].eraOrPeriod,
+                artifacts[i].locationFound, artifacts[i].estimatedAgeYears);
+    }
+
+    fprintf(file, "\n--- FIELD NOTES (%d Total) ---\n", noteCount);
+    for (int i = 0; i < noteCount; i++) {
+        fprintf(file, "%d. [%s - %s]\n   Note: %s\n\n",
+                notes[i].noteId, notes[i].cultureStudied, notes[i].observationTopic, notes[i].notes);
+    }
+
+    fclose(file);
+    printf("\nField report successfully saved to 'anthropology_field_report.txt'!\n");
+}
