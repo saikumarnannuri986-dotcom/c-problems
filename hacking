@@ -1,0 +1,38 @@
+public class PortScanner {
+
+    public static void main(String[] args) {
+        String host = "127.0.0.1"; // Target host (localhost)
+        int startPort = 1;
+        int endPort = 1024;
+        int timeoutMs = 200; // Connection timeout in milliseconds
+
+        System.out.println("Scanning target: " + host + " (Ports " + startPort + "-" + endPort + ")...");
+
+        for (int port = startPort; port <= endPort; port++) {
+            if (isPortOpen(host, port, timeoutMs)) {
+                System.out.println("Port " + port + " is OPEN");
+            }
+        }
+
+        System.out.println("Scan complete.");
+    }
+
+    /**
+     * Checks if a specific TCP port is open on a target host.
+     *
+     * @param host      The target hostname or IP address.
+     * @param port      The target port number.
+     * @param timeout   Connection timeout in milliseconds.
+     * @return true if the port is reachable/open; false otherwise.
+     */
+    public static boolean isPortOpen(String host, int port, int timeout) {
+        try (Socket socket = new Socket()) {
+            // Attempt to establish a TCP connection within the specified timeout
+            socket.connect(new InetSocketAddress(host, port), timeout);
+            return true;
+        } catch (IOException e) {
+            // Port is closed, filtered, or unreachable
+            return false;
+        }
+    }
+}
