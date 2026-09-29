@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Trainee {
+    private String name;
+    private String id;
+    private int progress;
+
+    public Trainee(String name, String id) {
+        this.name = name;
+        this.id = id;
+        this.progress = 0;
+    }
+
+    public void updateProgress(int percent) {
+        this.progress = Math.min(100, Math.max(0, percent));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+}
+
+class TrainingModule {
+    private String moduleName;
+    private String trainer;
+    private List<Trainee> enrolledTrainees;
+
+    public TrainingModule(String moduleName, String trainer) {
+        this.moduleName = moduleName;
+        this.trainer = trainer;
+        this.enrolledTrainees = new ArrayList<>();
+    }
+
+    public void addTrainee(Trainee trainee) {
+        enrolledTrainees.add(trainee);
+    }
+
+    public void displayStatus() {
+        System.out.println("Module: " + moduleName + " | Trainer: " + trainer);
+        System.out.println("---------------------------------------------");
+        for (Trainee t : enrolledTrainees) {
+            System.out.println("ID: " + t.getId() + " | Name: " + t.getName() + " | Progress: " + t.getProgress() + "%");
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        TrainingModule javaTraining = new TrainingModule("Java Fundamentals", "Alex Smith");
+
+        Trainee t1 = new Trainee("Alice Johnson", "T101");
+        Trainee t2 = new Trainee("Bob Lee", "T102");
+
+        javaTraining.addTrainee(t1);
+        javaTraining.addTrainee(t2);
+
+        t1.updateProgress(75);
+        t2.updateProgress(40);
+
+        javaTraining.displayStatus();
+    }
+}
