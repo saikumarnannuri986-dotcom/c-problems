@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <libusb-1.0/libusb.h>
+
+int main() {
+    libusb_context *ctx = NULL;
+    libusb_device **list = NULL;
+    ssize_t count;
+
+    if (libusb_init(&ctx) < 0) {
+        return 1;
+    }
+
+    count = libusb_get_device_list(ctx, &list);
+    if (count < 0) {
+        libusb_exit(ctx);
+        return 1;
+    }
+
+    for (ssize_t i = 0; i < count; i++) {
+        struct libusb_device_descriptor desc;
+        if (libusb_get_device_descriptor(list[i], &desc) == 0) {
+            printf("Vendor ID: 0x%04x | Product ID: 0x%04x\n", desc.idVendor, desc.idProduct);
+        }
+    }
+
+    libusb_free_device_list(list, 1);
+    libusb_exit(ctx);
+    return 0;
+}
