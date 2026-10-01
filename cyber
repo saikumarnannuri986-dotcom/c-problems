@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+struct CyberSecurityConcept {
+    char name[50];
+    char description[200];
+};
+
+void printConcept(struct CyberSecurityConcept concept) {
+    printf("Concept: %s\n", concept.name);
+    printf("Description: %s\n\n", concept.description);
+}
+
+int main() {
+    struct CyberSecurityConcept concepts[4] = {
+        {"Confidentiality", "Ensuring that data is accessible only to authorized users."},
+        {"Integrity", "Maintaining and assuring the accuracy and completeness of data."},
+        {"Availability", "Ensuring timely and reliable access to data and resources."},
+        {"Firewall", "A network security device that monitors and filters incoming and outgoing traffic."}
+    };
+
+    printf("=== Cyber Security Basics ===\n\n");
+
+    for (int i = 0; i < 4; i++) {
+        printConcept(concepts[i]);
+    }
+
+    return 0;
+}
