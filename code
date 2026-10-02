@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter side of square: ");
+        double side = scanner.nextDouble();
+        double squareArea = side * side;
+
+        System.out.print("Enter length of rectangle: ");
+        double length = scanner.nextDouble();
+
+        System.out.print("Enter breadth of rectangle: ");
+        double breadth = scanner.nextDouble();
+        double rectangleArea = length * breadth;
+
+        System.out.printf("Area of Square = %.3f%n", squareArea);
+        System.out.printf("Area of Rectangle = %.3f%n", rectangleArea);
+
+        scanner.close();
+    }
+}
