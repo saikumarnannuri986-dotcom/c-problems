@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Worker {
+    int id;
+    char name[50];
+    char role[50];
+    float salary;
+};
+
+void addWorker(struct Worker workers[], int *count) {
+    printf("Enter Worker ID: ");
+    scanf("%d", &workers[*count].id);
+    printf("Enter Worker Name: ");
+    scanf("%s", workers[*count].name);
+    printf("Enter Worker Role: ");
+    scanf("%s", workers[*count].role);
+    printf("Enter Worker Salary: ");
+    scanf("%f", &workers[*count].salary);
+    (*count)++;
+    printf("Worker added successfully!\n");
+}
+
+void displayWorkers(struct Worker workers[], int count) {
+    if (count == 0) {
+        printf("No workers found.\n");
+        return;
+    }
+    printf("\n--- Worker List ---\n");
+    for (int i = 0; i < count; i++) {
+        printf("ID: %d | Name: %s | Role: %s | Salary: %.2f\n", 
+               workers[i].id, workers[i].name, workers[i].role, workers[i].salary);
+    }
+}
+
+int main() {
+    struct Worker workers[100];
+    int count = 0;
+    int choice;
+
+    while (1) {
+        printf("\n1. Add Worker\n2. Display Workers\n3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addWorker(workers, &count);
+                break;
+            case 2:
+                displayWorkers(workers, count);
+                break;
+            case 3:
+                exit(0);
+            default:
+                printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}
